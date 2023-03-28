@@ -18,7 +18,7 @@ namespace Tesaurs.CardGameCore.Data
 
         public DbSet<Deck> Decks { get; set; }
 
-        public DbSet<Table> Tables { get; set; }
+        public DbSet<Game> Games { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

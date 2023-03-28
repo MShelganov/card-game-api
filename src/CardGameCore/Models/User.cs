@@ -2,8 +2,19 @@
 {
     public class User
     {
+        /// <summary>
+        /// идентификатор пользователя
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// имя пользователя
+        /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Электронный адрес.
+        /// </summary>
         public string Email { get; set; }
         public string Password { get; set; }
         public string EmailConfirmed { get; set; }
