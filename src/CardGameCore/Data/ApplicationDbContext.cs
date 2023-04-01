@@ -14,6 +14,8 @@ namespace Tesaurs.CardGameCore.Data
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Player> Players { get; set; }
+
         public DbSet<Card> Cards { get; set; }
 
         public DbSet<Deck> Decks { get; set; }
@@ -22,10 +24,26 @@ namespace Tesaurs.CardGameCore.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Card>()
-                .HasOne(c => c.Deck)
-                .WithMany(d => d.Cards)
-                .HasForeignKey(c => c.DeckId);
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Decks)
+                .WithOne(d => d.User);
+
+            modelBuilder.Entity<Player>()
+                .HasOne(p => p.User)
+                .WithOne(u => u.Player)
+                .HasForeignKey<Player>(p => p.UserId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Game>()
+                .HasMany(g => g.Players)
+                .WithOne(p => p.CurrentGame)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Player>()
+                .HasOne(p => p.Deck)
+                .WithOne()
+                .OnDelete(DeleteBehavior.SetNull);
+
             base.OnModelCreating(modelBuilder);
         }
     }

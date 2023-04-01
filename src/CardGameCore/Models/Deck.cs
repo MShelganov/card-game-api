@@ -13,6 +13,11 @@
         public string Name { get; set; }
 
         /// <summary>
+        /// Пользователь кому пренадлежит колода.
+        /// </summary>
+        public User User { get; set; }
+
+        /// <summary>
         /// Связь один ко многим с моделью Card, показывающая,
         /// какие карты входят в колоду.
         /// </summary>

@@ -1,4 +1,6 @@
-﻿namespace Tesaurs.CardGameCore.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Tesaurs.CardGameCore.Models
 {
     public class User
     {
@@ -6,6 +8,10 @@
         /// идентификатор пользователя
         /// </summary>
         public int Id { get; set; }
+
+        [ForeignKey("Player")]
+        public int? PlayerId { get; set; }
+        public Player? Player { get; set; }
 
         /// <summary>
         /// имя пользователя
@@ -20,5 +26,6 @@
         public string EmailConfirmed { get; set; }
         public virtual ICollection<Deck> Decks { get; set; }
         public DateTime LastVisit { get; set; }
+
     }
 }
